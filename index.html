@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Ski to Death 3D</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="game"></div>
+
+  <div id="hud" class="hidden">
+    <div id="hud-stats" class="panel">
+      <div class="stat"><span class="label">Speed</span><b id="hud-speed">0</b><small>km/h</small></div>
+      <div class="stat"><span class="label">Distance</span><b id="hud-dist">0</b><small>m</small></div>
+      <div class="stat"><span class="label">Air</span><b id="hud-air">0.0</b><small>s</small></div>
+      <div id="hud-cliff"></div>
+    </div>
+
+    <div id="crash-hud" class="panel hidden">
+      <div class="bones"><b id="crash-bones">0</b><span>bones broken<br><small>of 206</small></span></div>
+      <div class="meter"><div id="death-fill"></div><span id="death-label">INJURY 0%</span></div>
+      <ul id="injury-feed"></ul>
+    </div>
+
+    <div id="dead-banner" class="hidden">☠ DEAD<small id="dead-cause"></small></div>
+    <div id="trick-text"></div>
+    <div id="hint">← → steer · ↑ tuck · ↓ brake · SPACE jump · X bail · R restart<br>In the air: ← → spin · ↑ ↓ flip</div>
+  </div>
+
+  <div id="floaters"></div>
+
+  <div id="menu" class="overlay">
+    <div class="card">
+      <h1>SKI TO <span>DEATH</span> 3D</h1>
+      <p class="tag">The ski resort's least popular run.</p>
+      <p>Your goal is simple: crash as hard as you can. Hit trees, launch off ramps,
+        fly off cliffs and land on your head. Every broken bone counts — but did you break
+        enough of them to actually die?</p>
+      <div class="controls">
+        <div><kbd>←</kbd><kbd>→</kbd> steer / spin</div>
+        <div><kbd>↑</kbd> tuck (go faster) / front flip</div>
+        <div><kbd>↓</kbd> brake / back flip</div>
+        <div><kbd>Space</kbd> jump</div>
+        <div><kbd>X</kbd> bail (throw yourself)</div>
+        <div><kbd>R</kbd> restart</div>
+      </div>
+      <button id="start-btn">DROP IN</button>
+      <p id="menu-best"></p>
+    </div>
+  </div>
+
+  <div id="results" class="overlay hidden">
+    <div class="card results">
+      <div class="res-left">
+        <svg id="res-skeleton" viewBox="0 0 200 400"></svg>
+        <div class="legend"><i class="ok"></i>intact <i class="part"></i>cracked <i class="bad"></i>shattered</div>
+      </div>
+      <div class="res-right">
+        <p id="res-reason"></p>
+        <h2 id="res-verdict"></h2>
+        <p id="res-sub"></p>
+        <div class="big-bones"><b id="res-bones">0</b><span>bones broken<br><small>out of 206</small></span></div>
+        <div id="res-stats"></div>
+        <ul id="res-list"></ul>
+        <p id="res-record"></p>
+        <button id="again-btn">TRY AGAIN <small>(R)</small></button>
+      </div>
+    </div>
+  </div>
+
+  <div id="touch-controls">
+    <button data-key="left">◀</button>
+    <button data-key="right">▶</button>
+    <div class="spacer"></div>
+    <button data-key="down">▼</button>
+    <button data-key="up">▲</button>
+    <button data-key="jump">JUMP</button>
+    <button data-key="bail">BAIL</button>
+  </div>
+
+  <script src="lib/three.min.js"></script>
+  <script src="js/terrain.js"></script>
+  <script src="js/injuries.js"></script>
+  <script src="js/world.js"></script>
+  <script src="js/ragdoll.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
